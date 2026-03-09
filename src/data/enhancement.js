@@ -1,0 +1,41 @@
+// 강화 데이터: 현재 레벨(인덱스)에서 다음 레벨로 강화 시도 시 정보
+// probability: 성공 확률(%)
+// cost: 강화 비용(만원)
+// failDrop: 실패 시 하락 단계 수
+// destroyChance: 실패 시 파괴 확률(%)
+export const enhancementData = [
+  { targetLevel: 1,  probability: 100, cost: 50,    failDrop: 0, destroyChance: 0  },
+  { targetLevel: 2,  probability: 80,  cost: 100,   failDrop: 0, destroyChance: 0  },
+  { targetLevel: 3,  probability: 70,  cost: 200,   failDrop: 0, destroyChance: 0  },
+  { targetLevel: 4,  probability: 55,  cost: 400,   failDrop: 1, destroyChance: 0  },
+  { targetLevel: 5,  probability: 40,  cost: 800,   failDrop: 1, destroyChance: 0  },
+  { targetLevel: 6,  probability: 30,  cost: 1500,  failDrop: 2, destroyChance: 0  },
+  { targetLevel: 7,  probability: 23,  cost: 3000,  failDrop: 2, destroyChance: 0  },
+  { targetLevel: 8,  probability: 15,  cost: 5000,  failDrop: 3, destroyChance: 10 },
+  { targetLevel: 9,  probability: 7,   cost: 8000,  failDrop: 3, destroyChance: 20 },
+  { targetLevel: 10, probability: 3,   cost: 15000, failDrop: 3, destroyChance: 30 },
+];
+
+export const getEnhancementColor = (level) => {
+  if (level === 0) return '#8892b0';
+  if (level <= 3) return '#4CAF50';
+  if (level <= 5) return '#2196F3';
+  if (level <= 7) return '#9C27B0';
+  if (level <= 9) return '#FF5722';
+  return '#FFD700';
+};
+
+export const getFailDescription = (currentLevel) => {
+  const data = enhancementData[currentLevel];
+  if (!data) return '';
+  if (data.probability === 100) return '실패 없음';
+
+  let desc = '';
+  if (data.failDrop === 0) desc = '강화 단계 유지';
+  else desc = `${data.failDrop}단계 하락`;
+
+  if (data.destroyChance > 0) {
+    desc += ` + 파괴 확률 ${data.destroyChance}%`;
+  }
+  return desc;
+};
