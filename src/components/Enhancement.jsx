@@ -8,7 +8,7 @@ const Enhancement = ({ inventory, money, onEnhance, formatMoney }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const selectedCard = inventory.find(c => c.id === selectedCardId);
-  const enhanceable = inventory.filter(c => c.enhancement < 10);
+  const enhanceable = inventory.filter(c => c.enhancement < 13);
 
   const getEnhanceInfo = () => {
     if (!selectedCard) return null;
@@ -63,7 +63,7 @@ const Enhancement = ({ inventory, money, onEnhance, formatMoney }) => {
               </div>
               <div className="info-row">
                 <span className="info-label">성공 확률</span>
-                <span className={`info-value ${info.probability <= 10 ? 'danger' : info.probability <= 30 ? 'warning' : 'safe'}`}>
+                <span className={`info-value ${info.probability <= 13 ? 'danger' : info.probability <= 30 ? 'warning' : 'safe'}`}>
                   {info.probability}%
                 </span>
               </div>
@@ -82,7 +82,7 @@ const Enhancement = ({ inventory, money, onEnhance, formatMoney }) => {
                 className="probability-fill"
                 style={{
                   width: `${info.probability}%`,
-                  background: info.probability <= 10
+                  background: info.probability <= 13
                     ? 'linear-gradient(90deg, #ff4444, #ff6666)'
                     : info.probability <= 30
                     ? 'linear-gradient(90deg, #ff8800, #ffaa44)'

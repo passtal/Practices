@@ -1,0 +1,141 @@
+/* ======= 기본 리셋 & 색상 변수 ======= */
+:root {
+  --bg: #0e1525;
+  --bg2: #1a2236;
+  --bg3: #243050;
+  --text: #cdd6f4;
+  --accent: #89b4fa;
+  --gold: #f9e547;
+  --hp-red: #f38ba8;
+  --green: #a6e3a1;
+  --cost1: #808080;
+  --cost2: #11b288;
+  --cost3: #207ac7;
+  --cost4: #c840c0;
+  --cost5: #ffb93b;
+  --modal-bg: rgba(0,0,0,.75);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;font-family:'Segoe UI','Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);overflow:hidden;user-select:none;}
+
+.screen{display:none;width:100%;height:100%;}
+.screen.active{display:flex;align-items:center;justify-content:center;}
+
+/* ======= 로비 ======= */
+.lobby-box{background:var(--bg2);padding:40px 50px;border-radius:16px;text-align:center;min-width:360px;box-shadow:0 8px 40px rgba(0,0,0,.5);}
+.lobby-box h1{font-size:28px;margin-bottom:4px;color:var(--gold);}
+.sub{color:#889;font-size:13px;margin-bottom:16px;}
+.lobby-box input{width:100%;padding:10px 14px;border:2px solid var(--bg3);border-radius:8px;background:var(--bg);color:var(--text);font-size:15px;outline:none;margin-bottom:12px;}
+.lobby-box input:focus{border-color:var(--accent);}
+.btn-primary{display:inline-block;padding:10px 28px;border:none;border-radius:8px;background:var(--accent);color:var(--bg);font-size:15px;font-weight:700;cursor:pointer;transition:.2s;}
+.btn-primary:hover{filter:brightness(1.15);}
+.hidden{display:none!important;}
+#lobby-players{margin:16px 0;text-align:left;max-height:160px;overflow-y:auto;}
+.lp-row{padding:6px 10px;background:var(--bg3);border-radius:6px;margin-bottom:4px;font-size:14px;}
+.lp-row .host-tag{color:var(--gold);font-weight:700;margin-left:6px;}
+
+/* ======= 상단 바 ======= */
+#top-bar{display:flex;align-items:center;gap:16px;padding:6px 16px;background:var(--bg2);border-bottom:1px solid var(--bg3);height:42px;font-size:14px;width:100%;}
+#round-info{font-weight:700;color:var(--accent);}
+#timer-display{font-weight:700;font-size:18px;color:var(--gold);min-width:28px;text-align:center;}
+.hp{color:var(--hp-red);}
+.gold{color:var(--gold);}
+#my-info{margin-left:auto;display:flex;gap:12px;align-items:center;}
+
+/* ======= 게임 화면 ======= */
+#game-screen.active{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;}
+#main-area{display:flex;flex:1;overflow:hidden;}
+
+/* -- 시너지 패널 -- */
+#synergy-panel,#item-panel{width:170px;padding:8px;background:var(--bg2);overflow-y:auto;font-size:12px;}
+#synergy-panel h3,#item-panel h3{font-size:13px;color:var(--accent);margin-bottom:6px;}
+.synergy-row{padding:3px 6px;margin-bottom:3px;border-radius:4px;background:var(--bg3);}
+.synergy-row.active-syn{background:#2a4a3a;color:var(--green);}
+
+/* -- 중앙 -- */
+#center{flex:1;display:flex;flex-direction:column;align-items:center;padding:6px 0;}
+
+/* 순위 바 */
+#standings-bar{display:flex;gap:8px;margin-bottom:4px;font-size:11px;flex-wrap:wrap;justify-content:center;}
+.st-chip{padding:2px 8px;border-radius:4px;background:var(--bg3);}
+.st-chip.dead{opacity:.4;text-decoration:line-through;}
+
+/* 보드 */
+#board{display:grid;grid-template-columns:repeat(7,64px);grid-template-rows:repeat(4,64px);gap:3px;margin-bottom:6px;}
+.board-cell{width:64px;height:64px;background:var(--bg3);border:2px solid transparent;border-radius:6px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:border-color .15s;}
+.board-cell.drag-over{border-color:var(--accent);}
+.board-cell.has-unit{border-color:var(--cost1);}
+
+/* 벤치 */
+#bench{display:flex;gap:3px;margin-bottom:6px;}
+.bench-cell{width:64px;height:64px;background:var(--bg3);border:2px solid transparent;border-radius:6px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:border-color .15s;}
+.bench-cell.drag-over{border-color:var(--accent);}
+.bench-cell.has-unit{border-color:var(--cost1);}
+
+/* 유닛 칩 */
+.unit-chip{width:56px;height:56px;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:700;line-height:1.1;pointer-events:none;text-align:center;padding:2px;position:relative;}
+.unit-chip.cost1{background:linear-gradient(135deg,#4a4a4a,#666);}
+.unit-chip.cost2{background:linear-gradient(135deg,#0e7e5f,#14a37f);}
+.unit-chip.cost3{background:linear-gradient(135deg,#1861a0,#2494e0);}
+.unit-chip.cost4{background:linear-gradient(135deg,#8a2387,#c040c0);}
+.unit-chip.cost5{background:linear-gradient(135deg,#b7791f,#ffc107);}
+.unit-chip .star{font-size:9px;color:var(--gold);position:absolute;top:1px;left:2px;}
+.unit-chip .uname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52px;}
+.unit-chip .item-dots{display:flex;gap:1px;position:absolute;bottom:2px;}
+.unit-chip .item-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);}
+
+/* 상점 */
+#shop-bar{display:flex;align-items:center;gap:6px;padding:6px 8px;background:var(--bg2);border-radius:8px;width:100%;max-width:750px;}
+.shop-btn{padding:6px 12px;border:1px solid var(--bg3);border-radius:6px;background:var(--bg);color:var(--text);font-size:12px;cursor:pointer;white-space:nowrap;transition:.15s;}
+.shop-btn:hover{background:var(--bg3);}
+.ready-btn{background:var(--green);color:var(--bg);font-weight:700;border-color:var(--green);}
+.ready-btn:hover{filter:brightness(1.1);}
+#shop-cards{display:flex;gap:4px;flex:1;justify-content:center;}
+.shop-card{width:90px;height:52px;border:2px solid var(--bg3);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-size:11px;font-weight:700;transition:.15s;line-height:1.2;text-align:center;padding:2px 4px;}
+.shop-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.shop-card.cost1{border-color:var(--cost1);}
+.shop-card.cost2{border-color:var(--cost2);}
+.shop-card.cost3{border-color:var(--cost3);}
+.shop-card.cost4{border-color:var(--cost4);}
+.shop-card.cost5{border-color:var(--cost5);}
+.shop-card .sc-cost{font-size:10px;opacity:.7;}
+.shop-card.empty{opacity:.3;cursor:default;}
+
+/* 아이템 패널 */
+.item-row{padding:3px 6px;margin-bottom:2px;border-radius:4px;background:var(--bg3);cursor:grab;font-size:11px;}
+.item-row.selected{border:1px solid var(--accent);}
+.aug-row{padding:3px 6px;margin-bottom:2px;border-radius:4px;font-size:11px;}
+.aug-silver{background:#5a5a6a;}
+.aug-gold{background:#6a5a10;}
+.aug-prismatic{background:#3a2060;}
+
+/* 전투 로그 */
+#combat-log{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--bg3);border-radius:8px;padding:10px;max-width:500px;width:90%;max-height:160px;overflow-y:auto;font-size:11px;z-index:50;}
+#combat-log-content p{margin-bottom:2px;}
+
+/* ======= 증강 모달 ======= */
+.modal{position:fixed;inset:0;background:var(--modal-bg);display:flex;align-items:center;justify-content:center;z-index:100;}
+.modal-content{background:var(--bg2);border-radius:14px;padding:30px;text-align:center;min-width:300px;}
+.modal-content h2{color:var(--gold);margin-bottom:16px;}
+#augment-choices{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.aug-card{width:180px;padding:16px;border:2px solid var(--bg3);border-radius:10px;background:var(--bg);cursor:pointer;transition:.2s;text-align:center;}
+.aug-card:hover{border-color:var(--gold);transform:translateY(-4px);}
+.aug-card h3{font-size:15px;margin-bottom:6px;}
+.aug-card p{font-size:12px;color:#99a;}
+.aug-card.silver{border-left:4px solid #aaa;}
+.aug-card.gold{border-left:4px solid var(--gold);}
+.aug-card.prismatic{border-left:4px solid #c06afa;}
+
+/* ======= 게임 오버 ======= */
+#gameover-screen.active{display:flex;}
+#go-standings{margin:16px 0;text-align:left;}
+.go-row{padding:6px 10px;margin-bottom:4px;border-radius:6px;background:var(--bg3);font-size:14px;}
+.go-row:first-child{background:var(--gold);color:var(--bg);font-weight:700;}
+
+/* 드래그 중인 유닛 */
+#drag-ghost{position:fixed;pointer-events:none;z-index:200;opacity:.8;}
+
+/* 스크롤바 */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:3px;}

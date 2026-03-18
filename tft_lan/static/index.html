@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TFT 시즌3 갤럭시 - LAN 오토배틀러</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<!-- ===== 로비 ===== -->
+<div id="lobby-screen" class="screen active">
+  <div class="lobby-box">
+    <h1>⚔ TFT 시즌3 갤럭시 ⚔</h1>
+    <p class="sub">LAN 오토배틀러</p>
+    <input id="name-input" type="text" placeholder="닉네임 입력" maxlength="10" autocomplete="off">
+    <button id="join-btn" class="btn-primary">접속</button>
+    <div id="lobby-players"></div>
+    <button id="start-btn" class="btn-primary hidden">게임 시작</button>
+    <p id="lobby-msg" class="sub"></p>
+  </div>
+</div>
+
+<!-- ===== 게임 화면 ===== -->
+<div id="game-screen" class="screen">
+  <!-- 상단 바 -->
+  <header id="top-bar">
+    <div id="round-info">라운드 1</div>
+    <div id="phase-info">준비</div>
+    <div id="timer-display">30</div>
+    <div id="my-info">
+      <span id="my-name"></span>
+      <span id="my-hp" class="hp">100 HP</span>
+      <span id="my-gold" class="gold">0 G</span>
+      <span id="my-level">Lv.1</span>
+      <span id="my-xp">0/2 XP</span>
+    </div>
+  </header>
+
+  <!-- 메인 영역 -->
+  <div id="main-area">
+    <!-- 왼쪽: 시너지 -->
+    <aside id="synergy-panel">
+      <h3>시너지</h3>
+      <div id="synergy-list"></div>
+    </aside>
+
+    <!-- 중앙: 보드 + 벤치 -->
+    <div id="center">
+      <!-- 순위표 -->
+      <div id="standings-bar"></div>
+
+      <!-- 보드 (4 x 7) -->
+      <div id="board">
+        <!-- JS가 셀 생성 -->
+      </div>
+
+      <!-- 벤치 (9칸) -->
+      <div id="bench">
+        <!-- JS가 셀 생성 -->
+      </div>
+
+      <!-- 상점 -->
+      <div id="shop-bar">
+        <button id="refresh-btn" class="shop-btn">🔄 새로고침 (2G)</button>
+        <div id="shop-cards"></div>
+        <button id="level-btn" class="shop-btn">⬆ 레벨업 (4 XP)</button>
+        <button id="ready-btn" class="shop-btn ready-btn">✅ 준비 완료</button>
+      </div>
+    </div>
+
+    <!-- 오른쪽: 아이템 보관 -->
+    <aside id="item-panel">
+      <h3>아이템</h3>
+      <div id="item-list"></div>
+      <h3>증강</h3>
+      <div id="augment-list"></div>
+    </aside>
+  </div>
+
+  <!-- 전투 로그 -->
+  <div id="combat-log" class="hidden">
+    <div id="combat-log-content"></div>
+  </div>
+</div>
+
+<!-- ===== 증강 모달 ===== -->
+<div id="augment-modal" class="modal hidden">
+  <div class="modal-content">
+    <h2>증강 선택</h2>
+    <div id="augment-choices"></div>
+  </div>
+</div>
+
+<!-- ===== 게임 오버 ===== -->
+<div id="gameover-screen" class="screen">
+  <div class="lobby-box">
+    <h1 id="go-title">게임 종료</h1>
+    <div id="go-standings"></div>
+    <button class="btn-primary" onclick="location.reload()">다시 하기</button>
+  </div>
+</div>
+
+<script src="/static/game.js"></script>
+</body>
+</html>

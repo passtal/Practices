@@ -5,15 +5,18 @@
 // destroyChance: 실패 시 파괴 확률(%)
 export const enhancementData = [
   { targetLevel: 1,  probability: 100, cost: 50,    failDrop: 0, destroyChance: 0  },
-  { targetLevel: 2,  probability: 80,  cost: 100,   failDrop: 0, destroyChance: 0  },
-  { targetLevel: 3,  probability: 70,  cost: 200,   failDrop: 0, destroyChance: 0  },
-  { targetLevel: 4,  probability: 55,  cost: 400,   failDrop: 1, destroyChance: 0  },
-  { targetLevel: 5,  probability: 40,  cost: 800,   failDrop: 1, destroyChance: 0  },
-  { targetLevel: 6,  probability: 30,  cost: 1500,  failDrop: 2, destroyChance: 0  },
-  { targetLevel: 7,  probability: 23,  cost: 3000,  failDrop: 2, destroyChance: 0  },
-  { targetLevel: 8,  probability: 15,  cost: 5000,  failDrop: 3, destroyChance: 10 },
-  { targetLevel: 9,  probability: 7,   cost: 8000,  failDrop: 3, destroyChance: 20 },
-  { targetLevel: 10, probability: 3,   cost: 15000, failDrop: 3, destroyChance: 30 },
+  { targetLevel: 2,  probability: 90,  cost: 50,   failDrop: 0, destroyChance: 0  },
+  { targetLevel: 3,  probability: 80,  cost: 100,   failDrop: 0, destroyChance: 0  },
+  { targetLevel: 4,  probability: 70,  cost: 100,   failDrop: 0, destroyChance: 0  },
+  { targetLevel: 5,  probability: 60,  cost: 200,   failDrop: 0, destroyChance: 1  },
+  { targetLevel: 6,  probability: 50,  cost: 400,  failDrop: 0, destroyChance: 3  },
+  { targetLevel: 7,  probability: 45,  cost: 1000,  failDrop: 0, destroyChance: 5  },
+  { targetLevel: 8,  probability: 35,  cost: 1000,  failDrop: 0, destroyChance: 10 },
+  { targetLevel: 9,  probability: 30,  cost: 2000,  failDrop: 0, destroyChance: 15 },
+  { targetLevel: 10, probability: 25,  cost: 2500, failDrop: 1, destroyChance: 15 },
+  { targetLevel: 11, probability: 20,   cost: 2500, failDrop: 1, destroyChance: 20 },
+  { targetLevel: 12, probability: 15,   cost: 3000, failDrop: 2, destroyChance: 30 },
+  { targetLevel: 13, probability: 10,   cost: 3000, failDrop: 3, destroyChance: 50 },
 ];
 
 export const getEnhancementColor = (level) => {
@@ -22,6 +25,7 @@ export const getEnhancementColor = (level) => {
   if (level <= 5) return '#2196F3';
   if (level <= 7) return '#9C27B0';
   if (level <= 9) return '#FF5722';
+  if (level <= 11) return '#f197cc';
   return '#FFD700';
 };
 
